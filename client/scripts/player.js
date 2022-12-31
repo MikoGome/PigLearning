@@ -1,5 +1,5 @@
 class Player {
-  constructor(x, y, width, height, spritesheet, brain) {
+  constructor(x, y, width, height) {
     this.height = height;
     this.scale = 1.5;
     this.width = width;
@@ -8,8 +8,7 @@ class Player {
     this.ground = y - (this.height * this.scale);
     this.jumpForce = 5;
     this.velocity = 0;
-    this.gravity = 0.1;
-    this.spritesheet = spritesheet;
+    this.gravity = 0.085;
     this.isDead = false;
     this.steps = 0;
 
@@ -18,8 +17,7 @@ class Player {
 
     this.controls = new Controls();
 
-    this.brain = brain || new NeuralNetwork([8, 4, 4, 1]);
-    
+    this.brain = new NeuralNetwork([8, 4, 4, 1]); 
   }
 
   checkStatus(obstacleX, obstacleY, obstacleWidth, obstacleHeight) {
@@ -44,7 +42,6 @@ class Player {
   }
 
   see(...vision) {
-    // console.log('distance', distanceToObstacle, distanceToNextObstacle);
     const inputs = [...vision];
     const output = NeuralNetwork.feedForward(inputs, this.brain);
 
@@ -71,13 +68,13 @@ class Player {
 
   }
 
-  draw(ctx) {
+  draw(ctx, spritesheet) {
     if(this.isDead) return;
     ctx.beginPath();
     if(this.controls.jump) {
-      ctx.drawImage(this.spritesheet, (this.spritesheet.width - 75), 210, this.width, this.height, this.x, this.y, this.width * this.scale, this.height * this.scale);
+      ctx.drawImage(spritesheet, (spritesheet.width - 75), 210, this.width, this.height, this.x, this.y, this.width * this.scale, this.height * this.scale);
     } else {
-      ctx.drawImage(this.spritesheet, this.spritesheet.width - 75 - (70 * this.frameIndex), 75, this.width, this.height, this.x, this.y, this.width * this.scale, this.height * this.scale);
+      ctx.drawImage(spritesheet, spritesheet.width - 75 - (70 * this.frameIndex), 75, this.width, this.height, this.x, this.y, this.width * this.scale, this.height * this.scale);
     }
     // ctx.drawImage(spritesheet, 0, 0, this.width, this.height);
   }
