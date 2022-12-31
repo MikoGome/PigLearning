@@ -18,7 +18,6 @@ class Population {
   breed() {
     this.chooseChampion();
     this.players[0] = this.champion;
-    console.log('champion', this.champion);
     const children = [];
     children.push(this.champion);
     for(let i = 1; i < this.size - 1; i++) {
@@ -39,13 +38,10 @@ class Population {
   }
 
   chooseChampion() {
-    this.players.sort((a,b) => b.steps - a.steps);
-    // this.champion = this.players.reduce((acc, curr) => {
-    //   if(curr.steps > acc.steps) return curr;
-    //   return acc;
-    // });
-    this.champion = this.players[0];
-    console.log(this.champion.steps, this.steps);
+    this.champion = this.players.reduce((acc, curr) => {
+      if(curr.steps > acc.steps) return curr;
+      return acc;
+    });
   }
 
   chooseParent() {
