@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fileServer := http.FileServer(http.Dir("/client"))
+	fileServer := http.FileServer(http.Dir("client"))
 	http.Handle("/", fileServer)
 	fmt.Println("server is running")
 	err := http.ListenAndServe(":3000", nil)
