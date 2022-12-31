@@ -98,9 +98,7 @@ class Population {
         (obstacles.content[1]?.x - player.x + player.width)/this.canvas.width || 0, 
         (obstacles.content[1]?.y - player.y)/this.canvas.height || 0,
         (obstacles.content[2]?.x - player.x + player.width)/this.canvas.width || 0, 
-        (obstacles.content[2]?.y - player.y)/this.canvas.height || 0,
-        (obstacles.content[3]?.x - player.x + player.width)/this.canvas.width || 0, 
-        (obstacles.content[3]?.y - player.y)/this.canvas.height || 0
+        (obstacles.content[2]?.y - player.y)/this.canvas.height || 0
       );
     });
   }

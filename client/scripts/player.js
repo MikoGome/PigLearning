@@ -17,7 +17,7 @@ class Player {
 
     this.controls = new Controls();
 
-    this.brain = new NeuralNetwork([8, 4, 4, 1]); 
+    this.brain = new NeuralNetwork([6, 4, 2, 1]); 
   }
 
   checkStatus(obstacleX, obstacleY, obstacleWidth, obstacleHeight) {
